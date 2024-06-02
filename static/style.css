@@ -79,6 +79,11 @@ nav ul {
     list-style: none;
 }
 
+nav li {
+    align-items: center;
+    margin-top: 6px;
+}
+
 nav a {
     text-decoration: none;
     color: #333;
