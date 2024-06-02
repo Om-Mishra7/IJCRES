@@ -14,17 +14,17 @@ app = Flask(__name__)
 
 # Session Configuration
 
-redis_url = os.getenv("REDIS_URL") # Redis URI
-if not redis_url:
-    raise RuntimeError("Environment variable REDIS_URL not set")
+# redis_url = os.getenv("REDIS_URL") # Redis URI
+# if not redis_url:
+#     raise RuntimeError("Environment variable REDIS_URL not set")
 
-app.config["SESSION_TYPE"] = "redis"
-app.config["SESSION_REDIS"] = redis.from_url(redis_url)
-app.config["SESSION_COOKIE_SECURE"] = True
-app.config["SESSION_COOKIE_HTTPONLY"] = True
-app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+# app.config["SESSION_TYPE"] = "redis"
+# app.config["SESSION_REDIS"] = redis.from_url(redis_url)
+# app.config["SESSION_COOKIE_SECURE"] = True
+# app.config["SESSION_COOKIE_HTTPONLY"] = True
+# app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
 
-Session(app)
+# Session(app)
 
 
 # to here
@@ -41,7 +41,7 @@ records_chats = db['chats']
 
 @app.route("/", methods=['GET']) 
 def index():
-    return render_template("index.html") 
+    return render_template("dashboard.html") 
 
 
 if __name__ == "__main__":
