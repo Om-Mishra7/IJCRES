@@ -10,9 +10,9 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f8f8f8;
+    /* background-color: #f8f8f8; */
     padding: 10px 20px;
-    border-bottom: 1px solid #e0e0e0;
+    /* border-bottom: 1px solid #e0e0e0; */
     padding-left: 47px;
     padding-right: 47px;
 }
@@ -32,11 +32,18 @@ body {
     justify-content: space-between;
     align-items:start;
     padding: 20px;
-    background-color: #006769;
+    /* background-color: #006769; */
     color: white;
     padding-left: 47px;
     padding-right: 47px;
 }
+
+.half-colored {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #f8f8f8 50%, #006769 50%);
+}
+
 
 /* header {
     padding-left: 25px;
@@ -50,16 +57,19 @@ body {
 }
 
 .journal-cover {
-    height: 100px;
+    height: 168px;
     margin-right: 20px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
 }
 
 .journal-title h1 {
     margin: 0;
+    margin-top: 36px;
     font-size: 2em;
 }
 
 .metrics {
+    margin-top: 54px;
     display: flex;
     padding-top: 0px;
     margin-bottom: 15px;
@@ -398,3 +408,8 @@ main {
 .aim-scope-section ul li strong {
     color: #000;
 }
+
+
+
+
+
