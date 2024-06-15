@@ -30,12 +30,12 @@ body {
 .header-content {
     display: flex;
     justify-content: space-between;
-    align-items:start;
+    align-items: start;
     padding: 20px;
     /* background-color: #006769; */
     color: white;
-    padding-left: 93px;
-    padding-right: 93px;
+    padding-left: 156px;
+    padding-right: 156px;
 }
 
 .half-colored {
@@ -83,9 +83,10 @@ body {
 .metric1 .value {
     font-size: 1.5em;
 }
+
 .metric2 {
     margin-left: 20px;
-    padding-left:20px;
+    padding-left: 20px;
     text-align: center;
     border-left: 1px solid rgb(255, 255, 255);
 }
@@ -101,8 +102,8 @@ nav ul {
     padding: 10px 0;
     margin: 0;
     list-style: none;
-    padding-left: 93px;
-    padding-right: 93px;
+    padding-left: 156px;
+    padding-right: 156px;
 }
 
 nav li {
@@ -158,8 +159,8 @@ nav a {
     background-color: #e0e0e0;
     color: white;
     padding: 20px;
-    padding-left: 93px;
-    padding-right: 93px;
+    padding-left: 156px;
+    padding-right: 156px;
 }
 
 .footer-content p {
@@ -169,7 +170,7 @@ nav a {
 .footer-content a {
     color: black;
     text-decoration: none;
-    padding:20px;
+    padding: 20px;
 }
 
 .footer-bottom {
@@ -183,8 +184,8 @@ nav a {
 
 main {
     padding: 20px;
-    margin-left: 69px;
-    margin-right: 69px;
+    margin-left: 156px;
+    margin-right: 156px;
 }
 
 .about-journal {
@@ -256,9 +257,9 @@ main {
     color: white;
     padding: 20px;
     border-radius: 5px;
-    display:flex;
+    display: flex;
     flex-direction: inline;
-    
+
 }
 
 .editor-in-chief h2 {
@@ -274,7 +275,8 @@ main {
 .editor1 {
     padding-right: 80px;
 }
-.associate1{
+
+.associate1 {
     padding-left: 80px;
     border-left: 2px solid white;
     text-align: left;
@@ -358,7 +360,7 @@ main {
 .article-item .authors,
 .article-item .publication-date {
     font-size: 0.9em;
-    color: #666;
+    color: #fff;
 }
 
 .article-item .view-pdf {
@@ -408,8 +410,5 @@ main {
 .aim-scope-section ul li strong {
     color: #000;
 }
-
-
-
 
 

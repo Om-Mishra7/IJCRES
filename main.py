@@ -3,18 +3,15 @@ from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_session import Session
 from pymongo import MongoClient
+import bcrypt
 import redis
 
 load_dotenv()
 
 app = Flask(__name__)
 
-
-# redish database from here 
-
-# Session Configuration
-
-# redis_url = os.getenv("REDIS_URL") # Redis URI
+# Redis database configuration
+# redis_url = os.getenv("REDIS_URL")  # Redis URI
 # if not redis_url:
 #     raise RuntimeError("Environment variable REDIS_URL not set")
 
@@ -23,26 +20,39 @@ app = Flask(__name__)
 # app.config["SESSION_COOKIE_SECURE"] = True
 # app.config["SESSION_COOKIE_HTTPONLY"] = True
 # app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+# app.config["PERMANENT_SESSION_LIFETIME"] = 30*24*60*60  # 30 days
 
 # Session(app)
 
-
-# to here
-
-
-
 app.secret_key = os.getenv('SECRET_KEY')
-
 
 client = MongoClient(os.getenv('MONGODB_URI'))
 db = client["chatsphere"]
 records_signup = db['signup']
 records_chats = db['chats']
 
-@app.route("/", methods=['GET']) 
+@app.route("/", methods=['GET', 'POST'])
 def index():
-    return render_template("dashboard.html") 
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("psw")
+        repeat_password = request.form.get("psw-repeat")
+        remember = request.form.get("remember")
 
+        if password == repeat_password:
+            hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+            records_signup.insert_one({"email": email, "password": hashed_password})
+
+            if remember:
+                session.permanent = True  # Session will last for the duration of 30 days
+            else:
+                session.permanent = False  # Session will be a browser session
+
+            session['email'] = email
+            return redirect(url_for('index'))
+
+    email = session.get('email')
+    return render_template("dashboard.html", email=email)
 
 if __name__ == "__main__":
     app.run(debug=True)
