@@ -11,25 +11,25 @@ load_dotenv()
 app = Flask(__name__)
 
 # Redis database configuration
-# redis_url = os.getenv("REDIS_URL")  # Redis URI
-# if not redis_url:
-#     raise RuntimeError("Environment variable REDIS_URL not set")
+redis_url = os.getenv("REDIS_URL")  # Redis URI
+if not redis_url:
+    raise RuntimeError("Environment variable REDIS_URL not set")
 
-# app.config["SESSION_TYPE"] = "redis"
-# app.config["SESSION_REDIS"] = redis.from_url(redis_url)
-# app.config["SESSION_COOKIE_SECURE"] = True
-# app.config["SESSION_COOKIE_HTTPONLY"] = True
-# app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
-# app.config["PERMANENT_SESSION_LIFETIME"] = 30*24*60*60  # 30 days
+app.config["SESSION_TYPE"] = "redis"
+app.config["SESSION_REDIS"] = redis.from_url(redis_url)
+app.config["SESSION_COOKIE_SECURE"] = True
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+app.config["PERMANENT_SESSION_LIFETIME"] = 30*24*60*60  # 30 days
 
-# Session(app)
+Session(app)
 
 app.secret_key = os.getenv('SECRET_KEY')
 
 client = MongoClient(os.getenv('MONGODB_URI'))
-db = client["chatsphere"]
+db = client["IJCR"]
 records_signup = db['signup']
-records_chats = db['chats']
+# records_chats = db['chats']
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -64,6 +64,11 @@ def editional_team():
 @app.route("/call_for_paper/<filename>")
 def call_for_paper(filename):
     return send_from_directory('static', filename)
+
+@app.route('/sign_out')
+def sign_out():
+    session.pop('email', None)
+    return redirect('/')
     
 if __name__ == "__main__":
     app.run(debug=True)
