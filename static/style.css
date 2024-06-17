@@ -68,6 +68,17 @@ body {
     font-size: 2em;
 }
 
+.journal-title a {
+    text-decoration: none;
+    color: white;
+    margin-top:20px;
+}
+
+.journal-title a:hover,
+.journal-title a:focus {
+    border-bottom: 1px solid #fff;
+}
+
 .metrics {
     margin-top: 63px;
     display: flex;
