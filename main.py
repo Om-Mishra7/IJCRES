@@ -54,5 +54,12 @@ def index():
     email = session.get('email')
     return render_template("dashboard.html", email=email)
 
+
+
+@app.route("/editional_team", methods=['GET'])
+def editional_team():
+    return render_template("editional_team.html")
+
+    
 if __name__ == "__main__":
     app.run(debug=True)
