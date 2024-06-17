@@ -25,8 +25,11 @@
                     <a href="#">Help</a>
                     <!-- <a href="#">Search</a> -->
                     <a href="#">My account</a>
-                    <a href="#" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign
-                        in</a>
+                    {% if email %}
+                        <a href="/sign_out">{{ email }}</a>
+                    {% else %}
+                        <a href="#" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign in</a>
+                    {% endif %}
                 </div>
             </div>
             <div class="header-content">
