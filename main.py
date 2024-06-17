@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session,send_from_directory
 from flask_session import Session
 from pymongo import MongoClient
 import bcrypt
@@ -60,6 +60,10 @@ def index():
 def editional_team():
     return render_template("editional_team.html")
 
+
+@app.route("/call_for_paper/<filename>")
+def call_for_paper(filename):
+    return send_from_directory('static', filename)
     
 if __name__ == "__main__":
     app.run(debug=True)
