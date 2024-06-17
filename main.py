@@ -67,7 +67,9 @@ def call_for_paper(filename):
 
 @app.route('/sign_out')
 def sign_out():
-    session.pop('email', None)
+    email = session.pop('email', None)
+    if email:
+        records_signup.delete_one({'email': email})
     return redirect('/')
     
 if __name__ == "__main__":
