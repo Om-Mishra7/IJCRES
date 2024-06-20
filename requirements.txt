@@ -4,3 +4,4 @@ pymongo
 Flask-Session
 redis
 bcrypt
+resend
