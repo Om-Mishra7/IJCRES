@@ -1,30 +1,27 @@
 import os
 from dotenv import load_dotenv
-from flask import Flask, render_template, request, redirect, url_for, session,send_from_directory
+from flask import Flask, render_template, request, redirect, url_for, session, send_from_directory
 from flask_session import Session
 from pymongo import MongoClient
 import bcrypt
 import redis
-import resend # Import the Resend API Wrapper
-
+import resend  
 
 load_dotenv()
 
-# Application Helper Functions
 
 def send_email(recipient_list: list, email_subject: str, email_body: str):
-
     resend.api_key = os.getenv("RESEND_API_KEY")
 
     if not resend.api_key:
         raise RuntimeError("Environment variable RESEND_API_KEY not set")
 
     email_service_response = resend.Emails.send({
-    "from": "Notifications IJCR <notification@ijcres.in>",
-    "to": recipient_list,
-    "reply_to": "Editorial Team IJCR <editorial.team@ijcres.in>",
-    "subject": email_subject,
-    "text": email_body # Plain text email body, in case of HTML email body, use "html" key instead of "text"
+        "from": "Notifications IJCR <notification@ijcres.in>",
+        "to": recipient_list,
+        "reply_to": "Editorial Team IJCR <editorial.team@ijcres.in>",
+        "subject": email_subject,
+        "html": email_body  
     })
 
     if email_service_response.get("id") is None:
@@ -52,7 +49,6 @@ app.secret_key = os.getenv('SECRET_KEY')
 client = MongoClient(os.getenv('MONGODB_URI'))
 db = client["IJCR"]
 records_signup = db['signup']
-# records_chats = db['chats']
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -72,17 +68,22 @@ def index():
                 session.permanent = False  # Session will be a browser session
 
             session['email'] = email
+            
+            # Send a welcome email
+            email_subject = "Welcome to IJCR"
+            email_body = render_template("welcome_email.html", email=email)
+            email_body = email_body.replace("{{ email }}", email)
+            send_email([email], email_subject, email_body)
+            print("user signed in")
+            
             return redirect(url_for('index'))
 
     email = session.get('email')
     return render_template("dashboard.html", email=email)
 
-
-
 @app.route("/editional_team", methods=['GET'])
 def editional_team():
     return render_template("editional_team.html")
-
 
 @app.route("/call_for_paper/<filename>")
 def call_for_paper(filename):
@@ -93,8 +94,17 @@ def sign_out():
     email = session.pop('email', None)
     if email:
         records_signup.delete_one({'email': email})
+        
+        # Send a goodbye email
+        email_subject = "Goodbye from IJCR"
+        email_body = render_template("goodbye_email.html", email=email)
+        email_body = email_body.replace("{{ email }}", email)
+        
+        send_email([email], email_subject, email_body)
+        print("user signed out")
+    
     return redirect('/')
+
     
 if __name__ == "__main__":
     app.run(debug=True)
-
