@@ -5,8 +5,31 @@ from flask_session import Session
 from pymongo import MongoClient
 import bcrypt
 import redis
+import resend # Import the Resend API Wrapper
+
 
 load_dotenv()
+
+# Application Helper Functions
+
+def send_email(recipient_list: list, email_subject: str, email_body: str):
+
+    resend.api_key = os.getenv("RESEND_API_KEY")
+
+    if not resend.api_key:
+        raise RuntimeError("Environment variable RESEND_API_KEY not set")
+
+    email_service_response = resend.Emails.send({
+    "from": "Notifications IJCR <notification@ijcres.in>",
+    "to": recipient_list,
+    "reply_to": "Editorial Team IJCR <editorial.team@ijcres.in>",
+    "subject": email_subject,
+    "text": email_body # Plain text email body, in case of HTML email body, use "html" key instead of "text"
+    })
+
+    if email_service_response.get("id") is None:
+        return False
+    return True
 
 app = Flask(__name__)
 
@@ -74,3 +97,4 @@ def sign_out():
     
 if __name__ == "__main__":
     app.run(debug=True)
+
