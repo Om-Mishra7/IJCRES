@@ -438,7 +438,7 @@ tbody td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
     /* align-items: center; */
-    text-align: center;
+    text-align: left;
 }
 
 tbody tr:nth-child(even) {
