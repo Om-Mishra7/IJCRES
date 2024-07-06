@@ -85,6 +85,10 @@ def index():
 def editional_team():
     return render_template("editional_team.html")
 
+@app.route("/editional_team/nitish_kumar", methods=['GET'])
+def nitish_kumar():
+    return render_template("nitish_kumar.html")
+
 @app.route("/call_for_paper/<filename>")
 def call_for_paper(filename):
     return send_from_directory('static', filename)

@@ -409,6 +409,11 @@ main {
     color: #555;
 }
 
+.aim-scope-section a{
+    text-decoration: none;
+    color: #000;
+}
+
 .aim-scope-section ul {
     list-style-type: disc;
     margin-left: 20px;
@@ -453,3 +458,87 @@ td a {
 td a:hover {
     text-decoration: underline;
 }
+
+
+
+/* nitish css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.NitishContainer {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 800px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.nameHeading {
+    text-align: center;
+}
+
+.nameHeading h1 {
+    font-size: 2.5em;
+    margin: 0;
+    color: #333;
+}
+
+.content {
+    margin-top: 20px;
+}
+
+#about, #NitishExperience, #NitishEducation {
+    margin-bottom: 20px;
+}
+
+#about h2, #NitishExperience h2, #NitishEducation h2 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#nitishaboutcontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#nitishaboutcontainer p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+#nitishImage {
+    width: 150px;
+    height: auto;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+}
+
+#NitishExperience p, #NitishEducation p {
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+    #nitishaboutcontainer {
+        flex-direction: row;
+        text-align: left;
+    }
+
+    #nitishaboutcontainer p {
+        flex: 1;
+    }
+
+    #nitishImage {
+        margin-left: 20px;
+    }
+}
+/* nitish css end */
