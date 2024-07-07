@@ -10,76 +10,53 @@ import resend
 load_dotenv()
 
 
-def send_email(recipient_list: list, email_subject: str, email_body: str):
-    resend.api_key = os.getenv("RESEND_API_KEY")
+# def send_email(recipient_list: list, email_subject: str, email_body: str):
+    # resend.api_key = os.getenv("RESEND_API_KEY")
 
-    if not resend.api_key:
-        raise RuntimeError("Environment variable RESEND_API_KEY not set")
+    # if not resend.api_key:
+    #     raise RuntimeError("Environment variable RESEND_API_KEY not set")
 
-    email_service_response = resend.Emails.send({
-        "from": "Notifications IJCR <notification@ijcres.in>",
-        "to": recipient_list,
-        "reply_to": "Editorial Team IJCR <editorial.team@ijcres.in>",
-        "subject": email_subject,
-        "html": email_body  
-    })
+    # email_service_response = resend.Emails.send({
+    #     "from": "Notifications IJCR <notification@ijcres.in>",
+    #     "to": recipient_list,
+    #     "reply_to": "Editorial Team IJCR <editorial.team@ijcres.in>",
+    #     "subject": email_subject,
+    #     "html": email_body  
+    # })
 
-    if email_service_response.get("id") is None:
-        return False
-    return True
+    # if email_service_response.get("id") is None:
+    #     return False
+    # return True
 
 app = Flask(__name__)
 
 # Redis database configuration
-redis_url = os.getenv("REDIS_URL")  # Redis URI
-if not redis_url:
-    raise RuntimeError("Environment variable REDIS_URL not set")
+# redis_url = os.getenv("REDIS_URL")  # Redis URI
+# if not redis_url:
+#     raise RuntimeError("Environment variable REDIS_URL not set")
 
-app.config["SESSION_TYPE"] = "redis"
-app.config["SESSION_REDIS"] = redis.from_url(redis_url)
-app.config["SESSION_COOKIE_SECURE"] = True
-app.config["SESSION_COOKIE_HTTPONLY"] = True
-app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
-app.config["PERMANENT_SESSION_LIFETIME"] = 30*24*60*60  # 30 days
+# app.config["SESSION_TYPE"] = "redis"
+# app.config["SESSION_REDIS"] = redis.from_url(redis_url)
+# app.config["SESSION_COOKIE_SECURE"] = True
+# app.config["SESSION_COOKIE_HTTPONLY"] = True
+# app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+# app.config["PERMANENT_SESSION_LIFETIME"] = 30*24*60*60  # 30 days
 
-Session(app)
+# Session(app)
 
-app.secret_key = os.getenv('SECRET_KEY')
+# app.secret_key = os.getenv('SECRET_KEY')
 
-client = MongoClient(os.getenv('MONGODB_URI'))
-db = client["IJCR"]
-records_signup = db['signup']
+# client = MongoClient(os.getenv('MONGODB_URI'))
+# db = client["IJCR"]
+# records_signup = db['signup']
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
-    if request.method == "POST":
-        email = request.form.get("email")
-        password = request.form.get("psw")
-        repeat_password = request.form.get("psw-repeat")
-        remember = request.form.get("remember")
+    return redirect(url_for('home'))
 
-        if password == repeat_password:
-            hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-            records_signup.insert_one({"email": email, "password": hashed_password})
-
-            if remember:
-                session.permanent = True  # Session will last for the duration of 30 days
-            else:
-                session.permanent = False  # Session will be a browser session
-
-            session['email'] = email
-            
-            # Send a welcome email
-            email_subject = "Welcome to IJCR"
-            email_body = render_template("welcome_email.html", email=email)
-            email_body = email_body.replace("{{ email }}", email)
-            send_email([email], email_subject, email_body)
-            print("user signed in")
-            
-            return redirect(url_for('index'))
-
-    email = session.get('email')
-    return render_template("dashboard.html", email=email)
+@app.route("/home", methods=['GET'])
+def home():
+    return render_template("home.html")
 
 @app.route("/editional_team", methods=['GET'])
 def editional_team():
@@ -108,6 +85,7 @@ def sign_out():
         print("user signed out")
     
     return redirect('/')
+
 
     
 if __name__ == "__main__":
