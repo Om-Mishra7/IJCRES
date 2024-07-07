@@ -1,0 +1,242 @@
+{% extends "base.html" %}
+
+{% block main %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+<container class="main-container">
+    <div class="about-journal">
+        <h1>About the Journal</h1>
+        <p>The International Journal of Convergent Research (IJCR) is a multidisciplinary, peer-reviewed journal
+            dedicated to advancing the frontiers of research through the integration of diverse fields of study. IJCR
+            aims to foster innovation and collaboration by publishing high-quality research that bridges the gaps
+            between traditional disciplines, promoting convergent approaches to address complex global challenges. With
+            a commitment to excellence, IJCR provides a platform for researchers, scholars, and practitioners to share
+            their findings, insights, and advancements in a wide array of subjects.</p>
+    </div>
+    <div class="journal-aim-and-scope">
+        <h1>Journal Aim and Scope</h1>
+        <p>The International Journal of Convergent Research (IJCR) seeks to promote interdisciplinary collaboration and
+            innovation by publishing research that integrates methodologies, theories, and practices from multiple
+            disciplines. Our goal is to advance knowledge and provide solutions to multifaceted issues that require a
+            convergent research approach. We strive to be a leading platform for groundbreaking studies that transcend
+            traditional academic boundaries and contribute to the betterment of society.
+        </p>
+        <ul>
+            <li>
+                <p><span class="bold-text">Science and Technology:</span> Integrative studies that combine insights from
+                    physics, chemistry, biology, engineering, and computer science to develop> novel technologies and
+                    scientific understanding not just limited to advanced. Researches from basic to advanced research
+                    are also invited.</p>
+            </li>
+            <li>
+                <p><span class="bold-text">Health and Medicine:</span> Research that merges fields such as
+                    biotechnology, medicine, and public health to address human related issues and improve healthcare
+                    outcomes.</p>
+            </li>
+            <li>
+                <p><span class="bold-text">Social Sciences and Humanities:</span> Interdisciplinary investigations that
+                    blend sociology, psychology, economics, cultural studies, and political science to explore societal
+                    dynamics and human behavior.</p>
+            </li>
+            <li>
+                <p><span class="bold-text">Environmental Studies:</span> Collaborative research that unites ecology,
+                    environmental science, urban planning, and policy studies to address environmental challenges and
+                    promote sustainability.</p>
+            </li>
+            <li>
+                <p><span class="bold-text">Business, Management and Commerce:</span> Studies that integrate principles
+                    from business, economics, information systems, and organisational behaviour to enhance business
+                    practices and organisational effectiveness.</p>
+            </li>
+            <li>
+                <p><span class="bold-text">Education and Learning:</span> Research that converges educational theories,
+                    cognitive science, instructional technology, and curriculum development to improve teaching and
+                    learning processes.</p>
+            </li>
+            <li>
+                <p><span class="bold-text">Arts and Design:</span> Creative work that combines artistic practices,
+                    design principles, technology, and cultural studies to foster innovation in the arts and design
+                    industries.</p>
+            </li>
+            <li>
+                <p><span class="bold-text">Law:</span> Research that integrates legal studies with other disciplines
+                    such as technology, ethics, sociology, and environmental studies to explore the evolving landscape
+                    of legal issues and promote a comprehensive understanding of law in a global context.</p>
+            </li>
+        </ul>
+        <p>
+            IJCR welcomes original research articles, review papers, case studies, technical reports and perspectives
+            that reflect the convergent nature of contemporary research. By facilitating the exchange of knowledge
+            across disciplines, IJCR aims to contribute to a holistic understanding of complex issues and support the
+            development of integrated solutions.
+        </p>
+    </div>
+    <div class="journal-insights">
+        <div class="review-time">
+            <h1>30 Days</h1>
+            <p>Review Time<sup>*</sup></p>
+        </div>
+        <div class="acceptance-time">
+            <h1>10 Days</h1>
+            <p>Acceptance Time<sup>*</sup></p>
+        </div>
+        <div class="publication-time">
+            <h1>15 Days</h1>
+            <p>Publication Time<sup>*</sup></p>
+        </div>
+        <div class="view-all-insights">
+            <a href="/insights">View All Insights<svg xmlns="http://www.w3.org/2000/svg" height="24px"
+                    viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                    <path
+                        d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z" />
+                </svg></a>
+        </div>
+    </div>
+    <div class="editorial-board">
+        <div class="editor-in-chief">
+            <h1>Dr. Monika Yadav</h1>
+            <p>Editor-in-Chief</p>
+        </div>
+        <div class="vertical-line"></div>
+        <div class="associate-editors">
+            <div class="associate-editor">
+                <h1>Dr. Anshika Prakash</h1>
+                <p>Associate Editor</p>
+            </div>
+            <div class="associate-editor">
+                <h1>Dr. Ajhar Hussain</h1>
+                <p>Associate Editor</p>
+            </div>
+        </div>
+    </div>
+    <div class="articles">
+        <h1>Articles</h1>
+        <div class="article-filters">
+            <div class="article-filter">
+                <p>Latest Published</p>
+            </div>
+            <div class="article-filter">
+                <p>Most Cited</p>
+            </div>
+            <div class="article-filter">
+                <p>Most Downloaded</p>
+            </div>
+            <div class="article-filter">
+                <p>Most Popular</p>
+            </div>
+        </div>
+        <div class="article-cards">
+            <div class="article-card">
+                <div class="article-metadata">
+                    <p class="article-category">Research Article</p>
+                    <p class="article-access">Open Access</p>
+                </div>
+                <div class="article-card-image">
+                    <img src="static/assets/images/article-placeholder.png" alt="Article Image">
+                </div>
+                <div class="article-details">
+                    <h1>Lorem Ipsum Dolor Sit Amet</h1>
+                </div>
+                <div class="article-options">
+                    <a href="/article/example" class="view-article">View Article</a>
+                    <a href="/article/example" class="download-article" download>Download Article</a>
+                </div>
+            </div>
+            <div class="article-card">
+                <div class="article-metadata">
+                    <p class="article-category">Research Article</p>
+                    <p class="article-access">Open Access</p>
+                </div>
+                <div class="article-card-image">
+                    <img src="static/assets/images/article-placeholder.png" alt="Article Image">
+                </div>
+                <div class="article-details">
+                    <h1>Lorem Ipsum Dolor Sit Amet</h1>
+                </div>
+                <div class="article-options">
+                    <a href="/article/example" class="view-article">View Article</a>
+                    <a href="/article/example" class="download-article" download>Download Article</a>
+                </div>
+            </div>
+            <div class="article-card">
+                <div class="article-metadata">
+                    <p class="article-category">Research Article</p>
+                    <p class="article-access">Open Access</p>
+                </div>
+                <div class="article-card-image">
+                    <img src="static/assets/images/article-placeholder.png" alt="Article Image">
+                </div>
+                <div class="article-details">
+                    <h1>Lorem Ipsum Dolor Sit Amet</h1>
+                </div>
+                <div class="article-options">
+                    <a href="/article/example" class="view-article">View Article</a>
+                    <a href="/article/example" class="download-article" download>Download Article</a>
+                </div>
+            </div>
+            <div class="article-card">
+                <div class="article-metadata">
+                    <p class="article-category">Research Article</p>
+                    <p class="article-access">Open Access</p>
+                </div>
+                <div class="article-card-image">
+                    <img src="static/assets/images/article-placeholder.png" alt="Article Image">
+                </div>
+                <div class="article-details">
+                    <h1>Lorem Ipsum Dolor Sit Amet</h1>
+                </div>
+                <div class="article-options">
+                    <a href="/article/example" class="view-article">View Article</a>
+                    <a href="/article/example" class="download-article" download>Download Article</a>
+                </div>
+            </div>
+            <div class="article-card">
+                <div class="article-metadata">
+                    <p class="article-category">Research Article</p>
+                    <p class="article-access">Open Access</p>
+                </div>
+                <div class="article-card-image">
+                    <img src="static/assets/images/article-placeholder.png" alt="Article Image">
+                </div>
+                <div class="article-details">
+                    <h1>Lorem Ipsum Dolor Sit Amet</h1>
+                </div>
+                <div class="article-options">
+                    <a href="/article/example" class="view-article">View Article</a>
+                    <a href="/article/example" class="download-article" download>Download Article</a>
+                </div>
+            </div>
+            <div class="article-card">
+                <div class="article-metadata">
+                    <p class="article-category">Research Article</p>
+                    <p class="article-access">Open Access</p>
+                </div>
+                <div class="article-card-image">
+                    <img src="static/assets/images/article-placeholder.png" alt="Article Image">
+                </div>
+                <div class="article-details">
+                    <h1>Lorem Ipsum Dolor Sit Amet</h1>
+                </div>
+                <div class="article-options">
+                    <a href="/article/example" class="view-article">View Article</a>
+                    <a href="/article/example" class="download-article" download>Download Article</a>
+                </div>
+            </div>
+            <div class="article-card">
+                <div class="article-metadata">
+                    <p class="article-category">Research Article</p>
+                    <p class="article-access">Open Access</p>
+                </div>
+                <div class="article-card-image">
+                    <img src="static/assets/images/article-placeholder.png" alt="Article Image">
+                </div>
+                <div class="article-details">
+                    <h1>Lorem Ipsum Dolor Sit Amet</h1>
+                </div>
+                <div class="article-options">
+                    <a href="/article/example" class="view-article">View Article</a>
+                    <a href="/article/example" class="download-article" download>Download Article</a>
+                </div>
+            </div>
+        </div>
+</container>
+{% endblock %}

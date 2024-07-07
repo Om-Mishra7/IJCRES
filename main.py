@@ -10,44 +10,44 @@ import resend
 load_dotenv()
 
 
-# def send_email(recipient_list: list, email_subject: str, email_body: str):
-    # resend.api_key = os.getenv("RESEND_API_KEY")
+def send_email(recipient_list: list, email_subject: str, email_body: str):
+    resend.api_key = os.getenv("RESEND_API_KEY")
 
-    # if not resend.api_key:
-    #     raise RuntimeError("Environment variable RESEND_API_KEY not set")
+    if not resend.api_key:
+        raise RuntimeError("Environment variable RESEND_API_KEY not set")
 
-    # email_service_response = resend.Emails.send({
-    #     "from": "Notifications IJCR <notification@ijcres.in>",
-    #     "to": recipient_list,
-    #     "reply_to": "Editorial Team IJCR <editorial.team@ijcres.in>",
-    #     "subject": email_subject,
-    #     "html": email_body  
-    # })
+    email_service_response = resend.Emails.send({
+        "from": "Notifications IJCR <notification@ijcres.in>",
+        "to": recipient_list,
+        "reply_to": "Editorial Team IJCR <editorial.team@ijcres.in>",
+        "subject": email_subject,
+        "html": email_body  
+    })
 
-    # if email_service_response.get("id") is None:
-    #     return False
-    # return True
+    if email_service_response.get("id") is None:
+        return False
+    return True
 
 app = Flask(__name__)
 
-# Redis database configuration
-# redis_url = os.getenv("REDIS_URL")  # Redis URI
-# if not redis_url:
-#     raise RuntimeError("Environment variable REDIS_URL not set")
+Redis database configuration
+redis_url = os.getenv("REDIS_URL")  # Redis URI
+if not redis_url:
+    raise RuntimeError("Environment variable REDIS_URL not set")
 
-# app.config["SESSION_TYPE"] = "redis"
-# app.config["SESSION_REDIS"] = redis.from_url(redis_url)
-# app.config["SESSION_COOKIE_SECURE"] = True
-# app.config["SESSION_COOKIE_HTTPONLY"] = True
-# app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
-# app.config["PERMANENT_SESSION_LIFETIME"] = 30*24*60*60  # 30 days
+app.config["SESSION_TYPE"] = "redis"
+app.config["SESSION_REDIS"] = redis.from_url(redis_url)
+app.config["SESSION_COOKIE_SECURE"] = True
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+app.config["PERMANENT_SESSION_LIFETIME"] = 30*24*60*60  # 30 days
 
-# Session(app)
+Session(app)
 
-# app.secret_key = os.getenv('SECRET_KEY')
+app.secret_key = os.getenv('SECRET_KEY')
 
-# client = MongoClient(os.getenv('MONGODB_URI'))
-# db = client["IJCR"]
+client = MongoClient(os.getenv('MONGODB_URI'))
+db = client["IJCR"]
 # records_signup = db['signup']
 
 @app.route("/", methods=['GET', 'POST'])
@@ -58,13 +58,18 @@ def index():
 def home():
     return render_template("home.html")
 
-@app.route("/editional_team", methods=['GET'])
-def editional_team():
-    return render_template("editional_team.html")
+@app.route("/call-for-papers", methods=['GET'])
+def call_for_papers():
+    return send_from_directory('static', 'assets/pdfs/call-for-paper-ijcr.pdf')
 
-@app.route("/editional_team/nitish_kumar", methods=['GET'])
-def nitish_kumar():
-    return render_template("nitish_kumar.html")
+@app.route("/editional-team", methods=['GET'])
+def editional_team():
+    return render_template("editional-team.html")
+
+@app.route("/editorial-team/<editor_name>", methods=['GET'])
+def editor(editor_name):
+    print(editor_name)
+    return render_template(f"editor-{editor_name}.html")
 
 @app.route("/call_for_paper/<filename>")
 def call_for_paper(filename):
@@ -89,4 +94,4 @@ def sign_out():
 
     
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=1024)
